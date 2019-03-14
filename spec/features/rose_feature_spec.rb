@@ -35,8 +35,38 @@ describe GildedRose do
           14.times { @gildedrose.update_quality() }
             expect(@items[0].quality).to be >= 0
         end 
-        
-
       end
+
+      context "Aged Brie" do
+        before(:each) do 
+          @items = [Item.new("Aged Brie", 0, 5)]
+          @gildedrose = GildedRose.new(@items)
+        end 
+  
+        it "the name should not change" do 
+          @gildedrose.update_quality()
+          expect(@items[0].name).to eq "Aged Brie"
+        end 
+
+        it "has a quality that increases over time" do 
+          @items2 = [Item.new("Aged Brie", 5, 5)]
+          @gildedrose2 = GildedRose.new(@items2)
+          @gildedrose2.update_quality
+          expect(@items2[0].quality).to eq 6
+        end 
+  
+        it "value increases by 2 after sellin" do 
+          @gildedrose.update_quality()
+          expect(@items[0].quality).to eq 7
+          expect(@items[0].sell_in).to eq -1
+        end 
+  
+        it "quality can never be greater then 50" do 
+          25.times { @gildedrose.update_quality() }
+          expect(@items[0].quality).to be <= 50
+          expect(@items[0].sell_in).to equal -25
+        end
+      end
+  
     end
 end
