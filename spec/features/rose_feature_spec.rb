@@ -38,6 +38,7 @@ describe GildedRose do
       end
 
       context "Aged Brie" do
+        
         before(:each) do 
           @items = [Item.new("Aged Brie", 0, 5)]
           @gildedrose = GildedRose.new(@items)
@@ -67,6 +68,26 @@ describe GildedRose do
           expect(@items[0].sell_in).to equal -25
         end
       end
+
+      context "Sulfuras, Hand of Ragnaros" do 
+        
+        before(:each) do 
+          @items =[Item.new("Sulfuras, Hand of Ragnaros", 0, 80)]
+          @gildedrose = GildedRose.new(@items)
+        end 
   
-    end
+        it "the name should not change" do 
+          @gildedrose.update_quality()
+          expect(@items[0].name).to eq "Sulfuras, Hand of Ragnaros"
+        end 
+  
+        it "doesn't have a sellin date or decrease in quality" do 
+          @gildedrose.update_quality()
+          expect(@items[0].sell_in).to eq 0
+          expect(@items[0].quality).to eq 80
+        end 
+
+      end
+ 
+  end
 end
