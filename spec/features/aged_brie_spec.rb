@@ -3,7 +3,7 @@ require 'aged_brie'
 describe AgedBrie do
         
   before(:each) do 
-    @items = [AgedBrie.new("Aged Brie", 0, 5)]
+    @items = [AgedBrie.new(0, 5)]
     @gildedrose = GildedRose.new(@items)
   end 
 
