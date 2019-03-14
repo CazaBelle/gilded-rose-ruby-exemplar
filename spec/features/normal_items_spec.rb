@@ -27,10 +27,12 @@ describe NormalItem do
       expect(@items[0].sell_in).to eq 8 
   end
 
-  it "quality should reduce by 2 after sellin date" do 
-    11.times { @gildedrose.update_quality() }
-      expect(@items[0].quality).to eq 8
-  end 
+  # it "quality should reduce by 2 after sellin date" do 
+  #   @items2 = [NormalItem.new("bar", 0, 10)]
+  #   @gildedrose2 = GildedRose.new(@items)
+  #   @gildedrose2.update_quality()
+  #     expect(@items2[0].quality).to eq 8
+  # end 
 
   it "value should never fall below 0 even after sellin" do 
     14.times { @gildedrose.update_quality() }
